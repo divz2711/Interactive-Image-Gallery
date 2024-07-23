@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      height: auto;
+      width: 500px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #ccc;
+      outline: none;
+      transition: transform 0.2s;
+    }
+
+    .gallery img:focus {
+      border-color: #333;
+      transform: scale(1.30);
+    }
+    
+    .gallery img {
+      width: 150px; /* Fixed width */
+      height: 150px; /* Fixed height */
+      object-fit: cover; /* Ensures image aspect ratio is maintained */
+    }
+  </style>
+</head>
+<body>
+  <div class="gallery">
+    <img src="src/eiffel.jpg" alt="The Eiffel Tower" tabindex="0">
+    <img src="src/china.jpg" alt="The Great Wall of China" tabindex="0">
+    <img src="src/korea.jpg" alt="A beautiful scene in Korea" tabindex="0">
+    <img src="src/SoL.jpg" alt="The Statue of Liberty" tabindex="0">
+    <img src="src/taj.jpg" alt="The Taj Mahal" tabindex="0">
+    <img src="src/can.jpg" alt="A Canadian landscape" tabindex="0">
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      console.log('Page has loaded');
+
+      const images = document.querySelectorAll('.gallery img');
+
+      images.forEach((image, index) => {
+        image.addEventListener('focus', (event) => {
+          console.log(`Image ${index + 1} is focused`);
+          event.target.style.border = '2px solid blue';
+        });
+
+        image.addEventListener('blur', (event) => {
+          console.log(`Image ${index + 1} has lost focus`);
+          event.target.style.border = '2px solid #ccc';
+        });
+
+        image.addEventListener('mousemove', (event) => {
+          console.log(`Mouse moved over Image ${index + 1}`);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
